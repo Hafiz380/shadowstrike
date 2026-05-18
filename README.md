@@ -249,6 +249,91 @@ See the [LLM Providers documentation](https://docs.strix.ai/llm-providers/overvi
 
 Get the same Strix experience with [enterprise-grade](https://strix.ai/demo) controls: SSO (SAML/OIDC), custom compliance reports, dedicated support & SLA, custom deployment options (VPC/self-hosted), BYOK model support, and tailored agents optimized for your environment. [Learn more](https://strix.ai/demo).
 
+## Advanced Features (strix-advanced)
+
+This fork integrates advanced security testing capabilities from [strix-advanced](https://github.com/Hafiz380/strix-advanced):
+
+### Static Analysis Engine
+- **CPG Builder** — tree-sitter based Code Property Graph (6 languages: Python, JS, TS, Go, Java, PHP)
+- **Data Flow Analyzer** — Source → Sink taint tracing
+- **Sanitizer Analyzer** — LLM-guided sanitizer effectiveness validation
+- **20+ vulnerability types** with CWE/OWASP/CVSS mappings
+
+### Memory & Learning System
+- **Scan Memory** — Per-scan SQLite storage
+- **Global Memory** — Cross-scan knowledge accumulation
+- **Dedup Engine** — Finding deduplication across scans
+- **Skill Generator** — Auto-generate skills from scan experience
+
+### Advanced Exploitation
+- **Exploit Chain Builder** — Multi-vulnerability chaining (10 known patterns + novel discovery)
+- **Auth Automator** — 2FA/TOTP/SSO/OAuth2/JWT handling
+- **Race Condition Detector** — Concurrent request engine for TOCTOU bugs
+- **Logic Fuzzer** — Business logic invariant testing
+- **WAF Bypass** — 15+ evasion techniques for SQLi, XSS, SSRF, Path Traversal
+
+### Specialized Agents
+- **Recon Agent** — Subdomain enum, DNS, tech fingerprinting, endpoint discovery
+- **Exploit Agent** — SQLi, XSS, SSRF, RCE, SSTI, Path Traversal exploitation
+- **Analysis Agent** — Static analysis integration
+- **Report Agent** — Professional security reports with executive summary
+- **Coordinator Agent** — Full scan orchestration pipeline
+
+### Additional Features
+- **API Discovery** — Swagger/OpenAPI parsing, GraphQL introspection, brute-force, JS extraction
+- **Supply Chain** — npm/pip/go/cargo dependency scanning, typosquat detection
+- **Infrastructure** — DNS, SSL/TLS, security headers, CORS, cookies, cloud storage
+- **Custom Rules** — 15+ built-in rules, YAML/JSON rule loading, directory scanning
+
+### Usage (Advanced Commands)
+
+```bash
+# Install with advanced dependencies
+pip install strix-agent[advanced]
+
+# Full security scan
+strix-advanced scan https://target.com
+
+# Code-only scan (white-box)
+strix-advanced scan https://target.com --code ./src --type code
+
+# Quick scan
+strix-advanced scan https://target.com --type quick --depth quick
+
+# Static analysis only
+strix-advanced analyze ./src
+
+# Reconnaissance only
+strix-advanced recon https://target.com --depth deep
+
+# Custom rules
+strix-advanced rules list
+strix-advanced rules scan ./code
+strix-advanced rules export --output rules.yaml
+
+# System info
+strix-advanced info
+```
+
+### Vulnerability Types (Advanced)
+
+| Vuln Type | CWE | OWASP |
+|---|---|---|
+| SQL Injection | CWE-89 | A03 |
+| XSS | CWE-79 | A03 |
+| RCE | CWE-78 | A03 |
+| SSTI | CWE-1336 | A03 |
+| SSRF | CWE-918 | A10 |
+| Path Traversal | CWE-22 | A01 |
+| IDOR | CWE-639 | A01 |
+| CSRF | CWE-352 | A01 |
+| XXE | CWE-611 | A05 |
+| Deserialization | CWE-502 | A08 |
+| Open Redirect | CWE-601 | - |
+| NoSQL Injection | CWE-943 | A03 |
+| Auth Bypass | CWE-287 | A07 |
+| Race Condition | CWE-362 | A04 |
+
 ## Documentation
 
 Full documentation is available at **[docs.strix.ai](https://docs.strix.ai)** — including detailed guides for usage, CI/CD integrations, skills, and advanced configuration.
