@@ -267,8 +267,97 @@ def cmd_info(args):
   • Infrastructure security (DNS, SSL, headers, cloud)
 
 📖 Docs: https://docs.strix.ai
-🔗 Source: https://github.com/Hafiz380/strix
+🔗 Source: https://github.com/Hafiz380/shadowstrike
 """)
+
+
+def cmd_workspace(args):
+    """Manage scan workspaces."""
+    from strix.core.workspace import WorkspaceManager
+
+    wm = WorkspaceManager()
+
+    if args.ws_action == "list":
+        workspaces = wm.list_workspaces()
+        if not workspaces:
+            print("\n📁 No workspaces found.\n")
+            return
+
+        print(f"\n📁 Workspaces ({len(workspaces)} total)\n")
+        print(f"{'Name':<35} {'Target':<30} {'Status':<10} {'Findings':<10}")
+        print("-" * 85)
+        for ws in workspaces:
+            total_findings = sum(cp.findings_count for cp in ws.checkpoints)
+            print(f"{ws.name:<35} {ws.target:<30} {ws.status:<10} {total_findings:<10}")
+
+    elif args.ws_action == "resume":
+        ws = wm.get_workspace(args.name)
+        if not ws:
+            print(f"❌ Workspace '{args.name}' not found.")
+            return
+
+        pending = wm.get_pending_agents(args.name)
+        completed = wm.get_completed_agents(args.name)
+        print(f"\n📁 Workspace: {ws.name}")
+        print(f"🎯 Target: {ws.target}")
+        print(f"✅ Completed: {len(completed)}")
+        print(f"⏳ Pending: {len(pending)}")
+        if pending:
+            print(f"   Next: {pending[0]}")
+
+    elif args.ws_action == "delete":
+        ws = wm.get_workspace(args.name)
+        if not ws:
+            print(f"❌ Workspace '{args.name}' not found.")
+            return
+        wm.delete_workspace(args.name)
+        print(f"✅ Workspace '{args.name}' deleted.")
+
+
+def cmd_pipeline(args):
+    """Run parallel vulnerability pipeline."""
+    from strix.core.pipeline import VulnerabilityPipeline
+
+    async def run():
+        pipeline = VulnerabilityPipeline()
+
+        def on_progress(progress):
+            emoji = {
+                "recon": "🔍", "vuln": "🔬", "exploit": "💥",
+                "report": "📝", "init": "⚡", "complete": "🎉",
+            }
+            status = (
+                "✅" if progress.status == "completed"
+                else "🔄" if progress.status == "running"
+                else "❌"
+            )
+            print(f"  {emoji.get(progress.phase, '📋')} [{progress.agent}] {status} {progress.message}")
+
+        pipeline.on_progress(on_progress)
+
+        print(f"\n⚡ ShadowStrike Parallel Pipeline")
+        print(f"🎯 Target: {args.target}")
+        print(f"📋 Classes: {', '.join(args.classes or ['all'])}")
+        print(f"{'=' * 50}\n")
+
+        result = await pipeline.run(
+            target=args.target,
+            workspace_name=args.workspace,
+            vuln_classes=args.classes,
+            exploit_mode=not args.no_exploit,
+            code_path=args.code,
+        )
+
+        print(f"\n{'=' * 50}")
+        print(f"📊 Results:")
+        print(f"  🔴 Critical: {result.critical_findings}")
+        print(f"  🟠 High: {result.high_findings}")
+        print(f"  💥 Exploited: {result.exploited_count}")
+        print(f"  📋 Total: {result.total_findings}")
+        print(f"  ⏱️  Duration: {result.elapsed_seconds:.1f}s")
+        print(f"\n📁 Workspace: {result.workspace_name}")
+
+    asyncio.run(run())
 
 
 def main():
@@ -324,6 +413,26 @@ def main():
     # Info command
     subparsers.add_parser("info", help="Show system info")
 
+    # Workspace command
+    ws_parser = subparsers.add_parser("workspace", help="Manage scan workspaces")
+    ws_sub = ws_parser.add_subparsers(dest="ws_action")
+
+    ws_sub.add_parser("list", help="List all workspaces")
+
+    ws_resume = ws_sub.add_parser("resume", help="Resume a workspace")
+    ws_resume.add_argument("name", help="Workspace name")
+
+    ws_delete = ws_sub.add_parser("delete", help="Delete a workspace")
+    ws_delete.add_argument("name", help="Workspace name")
+
+    # Pipeline command
+    pipe_parser = subparsers.add_parser("pipeline", help="Run parallel vuln pipeline")
+    pipe_parser.add_argument("target", help="Target URL")
+    pipe_parser.add_argument("--workspace", "-w", help="Workspace name (for resume)")
+    pipe_parser.add_argument("--classes", nargs="+", default=None, help="Vuln classes to test")
+    pipe_parser.add_argument("--no-exploit", action="store_true", help="Skip exploitation")
+    pipe_parser.add_argument("--code", help="Source code path for white-box testing")
+
     args = parser.parse_args()
 
     if args.command == "scan":
@@ -336,6 +445,10 @@ def main():
         cmd_rules(args)
     elif args.command == "info":
         cmd_info(args)
+    elif args.command == "workspace":
+        cmd_workspace(args)
+    elif args.command == "pipeline":
+        cmd_pipeline(args)
     else:
         parser.print_help()
 

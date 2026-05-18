@@ -236,39 +236,46 @@ Get the same Strix experience with [enterprise-grade](https://shadowstrike.dev/d
 
 ## 📦 Features
 
-This fork integrates advanced security testing capabilities from [strix-advanced](https://github.com/Hafiz380/strix-advanced):
+ShadowStrike combines capabilities from [Strix](https://github.com/usestrix/strix), [strix-advanced](https://github.com/Hafiz380/strix-advanced), and concepts from [Shannon](https://github.com/KeygraphHQ/shannon):
 
-### Static Analysis Engine
-- **CPG Builder** - tree-sitter based Code Property Graph (6 languages: Python, JS, TS, Go, Java, PHP)
-- **Data Flow Analyzer** - Source → Sink taint tracing
-- **Sanitizer Analyzer** - LLM-guided sanitizer effectiveness validation
+### 🔬 Static Analysis Engine
+- **CPG Builder** — tree-sitter based Code Property Graph (6 languages: Python, JS, TS, Go, Java, PHP)
+- **Data Flow Analyzer** — Source → Sink taint tracing
+- **Sanitizer Analyzer** — LLM-guided sanitizer effectiveness validation
 - **20+ vulnerability types** with CWE/OWASP/CVSS mappings
 
-### Memory & Learning System
-- **Scan Memory** - Per-scan SQLite storage
-- **Global Memory** - Cross-scan knowledge accumulation
-- **Dedup Engine** - Finding deduplication across scans
-- **Skill Generator** - Auto-generate skills from scan experience
+### 🧠 Memory & Learning System
+- **Scan Memory** — Per-scan SQLite storage
+- **Global Memory** — Cross-scan knowledge accumulation
+- **Dedup Engine** — Finding deduplication across scans
+- **Skill Generator** — Auto-generate skills from scan experience
 
-### Advanced Exploitation
-- **Exploit Chain Builder** - Multi-vulnerability chaining (10 known patterns + novel discovery)
-- **Auth Automator** - 2FA/TOTP/SSO/OAuth2/JWT handling
-- **Race Condition Detector** - Concurrent request engine for TOCTOU bugs
-- **Logic Fuzzer** - Business logic invariant testing
-- **WAF Bypass** - 15+ evasion techniques for SQLi, XSS, SSRF, Path Traversal
+### 💥 Advanced Exploitation
+- **Exploit Chain Builder** — Multi-vulnerability chaining (10 known patterns + novel discovery)
+- **Auth Automator** — 2FA/TOTP/SSO/OAuth2/JWT handling
+- **Race Condition Detector** — Concurrent request engine for TOCTOU bugs
+- **Logic Fuzzer** — Business logic invariant testing
+- **WAF Bypass** — 15+ evasion techniques for SQLi, XSS, SSRF, Path Traversal
 
-### Specialized Agents
-- **Recon Agent** - Subdomain enum, DNS, tech fingerprinting, endpoint discovery
-- **Exploit Agent** - SQLi, XSS, SSRF, RCE, SSTI, Path Traversal exploitation
-- **Analysis Agent** - Static analysis integration
-- **Report Agent** - Professional security reports with executive summary
-- **Coordinator Agent** - Full scan orchestration pipeline
+### 🤖 Specialized Agents
+- **Recon Agent** — Subdomain enum, DNS, tech fingerprinting, endpoint discovery
+- **Exploit Agent** — SQLi, XSS, SSRF, RCE, SSTI, Path Traversal exploitation
+- **Analysis Agent** — Static analysis integration
+- **Report Agent** — Professional security reports with executive summary
+- **Coordinator Agent** — Full scan orchestration pipeline
 
-### Additional Features
-- **API Discovery** - Swagger/OpenAPI parsing, GraphQL introspection, brute-force, JS extraction
-- **Supply Chain** - npm/pip/go/cargo dependency scanning, typosquat detection
-- **Infrastructure** - DNS, SSL/TLS, security headers, CORS, cookies, cloud storage
-- **Custom Rules** - 15+ built-in rules, YAML/JSON rule loading, directory scanning
+### 🔄 Parallel Pipeline (from Shannon)
+- **5 Vuln Classes in Parallel** — Injection, XSS, Auth, Authorization, SSRF run concurrently
+- **Vuln→Exploit Pairs** — Each class has sequential analysis→exploitation
+- **Static-Dynamic Correlation** — Static findings fed to dynamic exploitation agents
+- **Workspace System** — Checkpoint/resume interrupted scans (SQLite-backed)
+- **Deliverable System** — Structured intermediate reports per pipeline phase
+
+### 📋 Additional Features
+- **API Discovery** — Swagger/OpenAPI parsing, GraphQL introspection, brute-force, JS extraction
+- **Supply Chain** — npm/pip/go/cargo dependency scanning, typosquat detection
+- **Infrastructure** — DNS, SSL/TLS, security headers, CORS, cookies, cloud storage
+- **Custom Rules** — 15+ built-in rules, YAML/JSON rule loading, directory scanning
 
 ### Usage (Advanced Commands)
 
@@ -298,6 +305,17 @@ strix-advanced rules export --output rules.yaml
 
 # System info
 strix-advanced info
+
+# Parallel vulnerability pipeline (Shannon-inspired)
+strix-advanced pipeline https://target.com
+strix-advanced pipeline https://target.com --classes injection xss ssrf
+strix-advanced pipeline https://target.com --code ./src --workspace my-audit
+strix-advanced pipeline https://target.com --no-exploit
+
+# Workspace management
+strix-advanced workspace list
+strix-advanced workspace resume my-audit
+strix-advanced workspace delete my-audit
 ```
 
 ### Vulnerability Types (Advanced)
