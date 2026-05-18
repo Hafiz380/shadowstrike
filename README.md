@@ -271,6 +271,30 @@ ShadowStrike combines capabilities from [Strix](https://github.com/usestrix/stri
 - **Workspace System** — Checkpoint/resume interrupted scans (SQLite-backed)
 - **Deliverable System** — Structured intermediate reports per pipeline phase
 
+### 🧠 Learning & Memory (from everything-claude-code)
+- **Instinct-Based Learning** — Auto-learn from scan sessions with confidence scoring (0.3–0.9)
+- **Memory Persistence** — Cross-session context with bounded loading (prevents memory explosion)
+- **Skill Evolution** — High-confidence instincts evolve into reusable skills
+- **Project-Scoped Learning** — Separate project-specific and global instincts
+
+### 🎯 Security Bounty Hunter
+- **Bounty-Focused Scanning** — Only reports findings that bounty platforms accept
+- **Skip Patterns** — Filters out local-only, CLI-only, and header-only issues
+- **PoC Suggestions** — Each finding includes suggested exploit approach
+- **Priority Ranking** — Critical/High/Medium/Low based on bounty-worthiness
+
+### ✅ Verification Loop
+- **5 Quality Gates** — Finding Validation, Exploit Verification, Dedup, Confidence, Report Quality
+- **Auto-Dedup** — Fingerprint-based duplicate detection
+- **Confidence Scoring** — Rates findings by evidence strength
+
+### 📜 Multi-Language Security Rules (12+ Languages)
+- **Python** — Django, FastAPI, Flask patterns
+- **JavaScript/TypeScript** — React, Next.js, Express patterns
+- **Java** — Spring Boot, JPA patterns
+- **Go, PHP, Rust, Ruby** — Language-specific security patterns
+- **Common Rules** — Secrets management, input validation, auth, error handling
+
 ### 📋 Additional Features
 - **API Discovery** — Swagger/OpenAPI parsing, GraphQL introspection, brute-force, JS extraction
 - **Supply Chain** — npm/pip/go/cargo dependency scanning, typosquat detection
@@ -316,6 +340,10 @@ strix-advanced pipeline https://target.com --no-exploit
 strix-advanced workspace list
 strix-advanced workspace resume my-audit
 strix-advanced workspace delete my-audit
+
+# Bounty-focused vulnerability scan
+strix-advanced bounty ./src
+strix-advanced bounty ./src --output bounty_report.md
 ```
 
 ### Vulnerability Types (Advanced)

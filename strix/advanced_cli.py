@@ -266,6 +266,15 @@ def cmd_info(args):
   • Supply chain analysis (npm, pip, go, cargo)
   • Infrastructure security (DNS, SSL, headers, cloud)
 
+📦 ECC-Inspired Modules (from everything-claude-code):
+  ✅ Instinct-Based Learning — Auto-learn from scan sessions with confidence scoring
+  ✅ Memory Persistence — Cross-session context management with bounded loading
+  ✅ Security Bounty Hunter — Bounty-focused vulnerability discovery
+  ✅ Verification Loop — Quality gates for scan results (5 phases)
+  ✅ Multi-Language Security Rules — 12+ languages with framework-specific rules
+  ✅ Parallel Pipeline — 5 vuln classes in parallel (from Shannon)
+  ✅ Workspace Manager — Checkpoint/resume interrupted scans (from Shannon)
+
 📖 Docs: https://docs.strix.ai
 🔗 Source: https://github.com/Hafiz380/shadowstrike
 """)
@@ -312,6 +321,50 @@ def cmd_workspace(args):
             return
         wm.delete_workspace(args.name)
         print(f"✅ Workspace '{args.name}' deleted.")
+
+
+def cmd_bounty(args):
+    """Scan for bounty-worthy vulnerabilities."""
+    from strix.core.bounty_hunter import BountyHunter
+    from pathlib import Path
+
+    hunter = BountyHunter()
+    path = Path(args.path)
+
+    print(f"\n🎯 Bounty Scan")
+    print(f"📁 Target: {args.path}")
+    print(f"{'=' * 50}\n")
+
+    if path.is_file():
+        findings = hunter.scan_file(str(path))
+    elif path.is_dir():
+        findings = hunter.scan_directory(str(path))
+    else:
+        print(f"❌ Path not found: {args.path}")
+        return
+
+    # Print findings
+    for f in findings:
+        emoji = {"critical": "🔴", "high": "🟠", "medium": "🟡", "low": "🟢"}.get(
+            f.priority.value, "⚪"
+        )
+        print(f"  {emoji} {f.title} ({f.cwe_id})")
+        print(f"     📍 {f.file_path}:{f.line_start}")
+        print(f"     💡 {f.poc_suggestion}")
+        print()
+
+    # Generate report
+    report = hunter.generate_report(findings)
+    report_path = args.output or "bounty_report.md"
+    with open(report_path, "w") as f:
+        f.write(report)
+
+    print(f"{'=' * 50}")
+    print(f"📊 Results:")
+    print(f"  🔴 Critical: {sum(1 for f in findings if f.priority.value == 'critical')}")
+    print(f"  🟠 High: {sum(1 for f in findings if f.priority.value == 'high')}")
+    print(f"  📋 Total: {len(findings)}")
+    print(f"📝 Report saved to: {report_path}")
 
 
 def cmd_pipeline(args):
@@ -433,6 +486,11 @@ def main():
     pipe_parser.add_argument("--no-exploit", action="store_true", help="Skip exploitation")
     pipe_parser.add_argument("--code", help="Source code path for white-box testing")
 
+    # Bounty scan command
+    bounty_parser = subparsers.add_parser("bounty", help="Scan for bounty-worthy vulnerabilities")
+    bounty_parser.add_argument("path", help="File or directory to scan")
+    bounty_parser.add_argument("--output", "-o", help="Report output file")
+
     args = parser.parse_args()
 
     if args.command == "scan":
@@ -449,6 +507,8 @@ def main():
         cmd_workspace(args)
     elif args.command == "pipeline":
         cmd_pipeline(args)
+    elif args.command == "bounty":
+        cmd_bounty(args)
     else:
         parser.print_help()
 
