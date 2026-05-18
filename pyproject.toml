@@ -1,12 +1,12 @@
 [project]
-name = "strix-agent"
+name = "shadowstrike"
 version = "0.8.3"
-description = "Open-source AI Hackers for your apps"
+description = "ShadowStrike — AI-Powered Advanced Security Testing Platform"
 readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.12"
 authors = [
-  { name = "Strix", email = "hi@usestrix.com" },
+  { name = "Hafiz380", email = "hafiz@users.noreply.github.com" },
 ]
 keywords = [
   "cybersecurity",

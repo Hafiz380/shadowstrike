@@ -54,7 +54,7 @@ def cmd_scan(args):
 
             coordinator.on_progress(on_progress)
 
-            print(f"\n⚡ Strix Advanced Security Scan")
+            print(f"\n⚡ ShadowStrike Security Scan")
             print(f"🎯 Target: {args.target}")
             print(f"📋 Type: {args.type}")
             print(f"{'=' * 50}\n")
@@ -244,7 +244,7 @@ def cmd_info(args):
   ✅ CI/CD Integration (GitHub Actions)
   ✅ Docker Sandbox Execution
 
-📦 Advanced Modules (integrated from strix-advanced):
+📦 Advanced Modules (integrated from shadowstrike):
   ✅ Static Analysis Engine (CPG Builder, Data Flow, Sanitizer)
   ✅ Memory & Learning System (Scan Memory, Global Memory, Dedup, Skill Gen)
   ✅ Advanced Exploitation (Chain Builder, Auth, Race Detector, Logic Fuzzer, WAF Bypass)
@@ -272,10 +272,10 @@ def cmd_info(args):
 
 
 def main():
-    """Entry point for strix-advanced commands."""
+    """Entry point for shadowstrike commands."""
     parser = argparse.ArgumentParser(
-        prog="strix-advanced",
-        description="⚡ Strix — AI-Powered Security Testing Platform (Advanced Features)",
+        prog="shadowstrike",
+        description="⚡ ShadowStrike — AI-Powered Advanced Security Testing Platform",
     )
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
 

@@ -1,61 +1,46 @@
-<p align="center">
-  <a href="https://strix.ai/">
-    <img src="https://github.com/usestrix/.github/raw/main/imgs/cover.png" alt="Strix Banner" width="100%">
-  </a>
-</p>
-
 <div align="center">
 
-# Strix
+# ⚡ ShadowStrike
 
-### Open-source AI hackers to find and fix your app’s vulnerabilities.
+### AI-Powered Advanced Security Testing Platform
 
 <br/>
 
-
-<a href="https://docs.strix.ai"><img src="https://img.shields.io/badge/Docs-docs.strix.ai-2b9246?style=for-the-badge&logo=gitbook&logoColor=white" alt="Docs"></a>
-<a href="https://strix.ai"><img src="https://img.shields.io/badge/Website-strix.ai-f0f0f0?style=for-the-badge&logoColor=000000" alt="Website"></a>
-[![](https://dcbadge.limes.pink/api/server/strix-ai)](https://discord.gg/strix-ai)
-
-<a href="https://deepwiki.com/usestrix/strix"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
-<a href="https://github.com/usestrix/strix"><img src="https://img.shields.io/github/stars/usestrix/strix?style=flat-square" alt="GitHub Stars"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-3b82f6?style=flat-square" alt="License"></a>
-<a href="https://pypi.org/project/strix-agent/"><img src="https://img.shields.io/pypi/v/strix-agent?style=flat-square" alt="PyPI Version"></a>
-
-
-<a href="https://discord.gg/strix-ai"><img src="https://github.com/usestrix/.github/raw/main/imgs/Discord.png" height="40" alt="Join Discord"></a>
-<a href="https://x.com/strix_ai"><img src="https://github.com/usestrix/.github/raw/main/imgs/X.png" height="40" alt="Follow on X"></a>
-
-
-<a href="https://trendshift.io/repositories/15362" target="_blank"><img src="https://trendshift.io/api/badge/repositories/15362" alt="usestrix/strix | Trendshift" width="250" height="55"/></a>
+<a href="https://github.com/Hafiz380/shadowstrike"><img src="https://img.shields.io/badge/GitHub-Hafiz380/shadowstrike-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-3b82f6?style=for-the-badge" alt="License"></a>
+<a href="#"><img src="https://img.shields.io/badge/Python-3.12+-3776ab?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
 
 </div>
 
-
-> [!TIP]
-> **New!** Strix integrates seamlessly with GitHub Actions and CI/CD pipelines. Automatically scan for vulnerabilities on every pull request and block insecure code before it reaches production - [Get started with no setup required](https://app.strix.ai).
+> **ShadowStrike** is an advanced AI-powered security testing platform built on top of [Strix](https://github.com/Hafiz380/shadowstrike). It combines autonomous AI hacking agents with static analysis, memory systems, exploit chaining, and professional reporting — all in one tool.
 
 ---
 
+## 🚀 Quick Start
 
-## Strix Overview
+```bash
+# Clone
+git clone https://github.com/Hafiz380/shadowstrike.git
+cd shadowstrike
 
-Strix are autonomous AI agents that act just like real hackers - they run your code dynamically, find vulnerabilities, and validate them through actual proof-of-concepts. Built for developers and security teams who need fast, accurate security testing without the overhead of manual pentesting or the false positives of static analysis tools.
+# Install with advanced features
+pip install -e ".[advanced]"
 
-**Key Capabilities:**
+# Verify installation
+strix-advanced info
+```
 
-- **Full hacker toolkit** out of the box
-- **Teams of agents** that collaborate and scale
-- **Real validation** with PoCs, not false positives
-- **Developer‑first** CLI with actionable reports
-- **Auto‑fix & reporting** to accelerate remediation
+## ⚡ What's Inside
+
+ShadowStrike includes **everything from Strix** plus these advanced capabilities:
+- **Auto-fix & reporting** to accelerate remediation
 
 
 <br>
 
 
 <div align="center">
-  <a href="https://strix.ai">
+  <a href="https://shadowstrike.dev">
     <img src=".github/screenshot.png" alt="Strix Demo" width="1000" style="border-radius: 16px;">
   </a>
 </div>
@@ -72,13 +57,13 @@ Strix are autonomous AI agents that act just like real hackers - they run your c
 
 **Prerequisites:**
 - Docker (running)
-- An LLM API key from any [supported provider](https://docs.strix.ai/llm-providers/overview) (OpenAI, Anthropic, Google, etc.)
+- An LLM API key from any [supported provider](https://docs.shadowstrike.dev/llm-providers/overview) (OpenAI, Anthropic, Google, etc.)
 
 ### Installation & First Scan
 
 ```bash
 # Install Strix
-curl -sSL https://strix.ai/install | bash
+curl -sSL https://shadowstrike.dev/install | bash
 
 # Configure your AI provider
 export STRIX_LLM="openai/gpt-5.4"
@@ -95,7 +80,7 @@ strix --target ./app-directory
 
 ## ☁️ Strix Platform
 
-Try the Strix full-stack security platform at **[app.strix.ai](https://app.strix.ai)** — sign up for free, connect your repos and domains, and launch a pentest in minutes.
+Try the Strix full-stack security platform at **[app.shadowstrike.dev](https://app.shadowstrike.dev)** - sign up for free, connect your repos and domains, and launch a pentest in minutes.
 
 - **Validated findings with PoCs** and reproduction steps
 - **One-click autofix** as ready-to-merge pull requests
@@ -103,7 +88,7 @@ Try the Strix full-stack security platform at **[app.strix.ai](https://app.strix
 - **Integrations** with GitHub, Slack, Jira, Linear, and CI/CD pipelines
 - **Continuous learning** that builds on past findings and remediations
 
-[**Start your first pentest →**](https://app.strix.ai)
+[**Start your first pentest →**](https://app.shadowstrike.dev)
 
 ---
 
@@ -182,7 +167,7 @@ strix -n --target ./ --scan-mode quick --scope-mode diff --diff-base origin/main
 
 ### Headless Mode
 
-Run Strix programmatically without interactive UI using the `-n/--non-interactive` flag—perfect for servers and automated jobs. The CLI prints real-time vulnerability findings, and the final report before exiting. Exits with non-zero code when vulnerabilities are found.
+Run Strix programmatically without interactive UI using the `-n/--non-interactive` flag-perfect for servers and automated jobs. The CLI prints real-time vulnerability findings, and the final report before exiting. Exits with non-zero code when vulnerabilities are found.
 
 ```bash
 strix -n --target https://your-app.com
@@ -207,7 +192,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install Strix
-        run: curl -sSL https://strix.ai/install | bash
+        run: curl -sSL https://shadowstrike.dev/install | bash
 
       - name: Run Strix
         env:
@@ -239,57 +224,57 @@ export STRIX_REASONING_EFFORT="high"  # control thinking effort (default: high, 
 
 **Recommended models for best results:**
 
-- [OpenAI GPT-5.4](https://openai.com/api/) — `openai/gpt-5.4`
-- [Anthropic Claude Sonnet 4.6](https://claude.com/platform/api) — `anthropic/claude-sonnet-4-6`
-- [Google Gemini 3 Pro Preview](https://cloud.google.com/vertex-ai) — `vertex_ai/gemini-3-pro-preview`
+- [OpenAI GPT-5.4](https://openai.com/api/) - `openai/gpt-5.4`
+- [Anthropic Claude Sonnet 4.6](https://claude.com/platform/api) - `anthropic/claude-sonnet-4-6`
+- [Google Gemini 3 Pro Preview](https://cloud.google.com/vertex-ai) - `vertex_ai/gemini-3-pro-preview`
 
-See the [LLM Providers documentation](https://docs.strix.ai/llm-providers/overview) for all supported providers including Vertex AI, Bedrock, Azure, and local models.
+See the [LLM Providers documentation](https://docs.shadowstrike.dev/llm-providers/overview) for all supported providers including Vertex AI, Bedrock, Azure, and local models.
 
 ## Enterprise
 
-Get the same Strix experience with [enterprise-grade](https://strix.ai/demo) controls: SSO (SAML/OIDC), custom compliance reports, dedicated support & SLA, custom deployment options (VPC/self-hosted), BYOK model support, and tailored agents optimized for your environment. [Learn more](https://strix.ai/demo).
+Get the same Strix experience with [enterprise-grade](https://shadowstrike.dev/demo) controls: SSO (SAML/OIDC), custom compliance reports, dedicated support & SLA, custom deployment options (VPC/self-hosted), BYOK model support, and tailored agents optimized for your environment. [Learn more](https://shadowstrike.dev/demo).
 
-## Advanced Features (strix-advanced)
+## 📦 Features
 
 This fork integrates advanced security testing capabilities from [strix-advanced](https://github.com/Hafiz380/strix-advanced):
 
 ### Static Analysis Engine
-- **CPG Builder** — tree-sitter based Code Property Graph (6 languages: Python, JS, TS, Go, Java, PHP)
-- **Data Flow Analyzer** — Source → Sink taint tracing
-- **Sanitizer Analyzer** — LLM-guided sanitizer effectiveness validation
+- **CPG Builder** - tree-sitter based Code Property Graph (6 languages: Python, JS, TS, Go, Java, PHP)
+- **Data Flow Analyzer** - Source → Sink taint tracing
+- **Sanitizer Analyzer** - LLM-guided sanitizer effectiveness validation
 - **20+ vulnerability types** with CWE/OWASP/CVSS mappings
 
 ### Memory & Learning System
-- **Scan Memory** — Per-scan SQLite storage
-- **Global Memory** — Cross-scan knowledge accumulation
-- **Dedup Engine** — Finding deduplication across scans
-- **Skill Generator** — Auto-generate skills from scan experience
+- **Scan Memory** - Per-scan SQLite storage
+- **Global Memory** - Cross-scan knowledge accumulation
+- **Dedup Engine** - Finding deduplication across scans
+- **Skill Generator** - Auto-generate skills from scan experience
 
 ### Advanced Exploitation
-- **Exploit Chain Builder** — Multi-vulnerability chaining (10 known patterns + novel discovery)
-- **Auth Automator** — 2FA/TOTP/SSO/OAuth2/JWT handling
-- **Race Condition Detector** — Concurrent request engine for TOCTOU bugs
-- **Logic Fuzzer** — Business logic invariant testing
-- **WAF Bypass** — 15+ evasion techniques for SQLi, XSS, SSRF, Path Traversal
+- **Exploit Chain Builder** - Multi-vulnerability chaining (10 known patterns + novel discovery)
+- **Auth Automator** - 2FA/TOTP/SSO/OAuth2/JWT handling
+- **Race Condition Detector** - Concurrent request engine for TOCTOU bugs
+- **Logic Fuzzer** - Business logic invariant testing
+- **WAF Bypass** - 15+ evasion techniques for SQLi, XSS, SSRF, Path Traversal
 
 ### Specialized Agents
-- **Recon Agent** — Subdomain enum, DNS, tech fingerprinting, endpoint discovery
-- **Exploit Agent** — SQLi, XSS, SSRF, RCE, SSTI, Path Traversal exploitation
-- **Analysis Agent** — Static analysis integration
-- **Report Agent** — Professional security reports with executive summary
-- **Coordinator Agent** — Full scan orchestration pipeline
+- **Recon Agent** - Subdomain enum, DNS, tech fingerprinting, endpoint discovery
+- **Exploit Agent** - SQLi, XSS, SSRF, RCE, SSTI, Path Traversal exploitation
+- **Analysis Agent** - Static analysis integration
+- **Report Agent** - Professional security reports with executive summary
+- **Coordinator Agent** - Full scan orchestration pipeline
 
 ### Additional Features
-- **API Discovery** — Swagger/OpenAPI parsing, GraphQL introspection, brute-force, JS extraction
-- **Supply Chain** — npm/pip/go/cargo dependency scanning, typosquat detection
-- **Infrastructure** — DNS, SSL/TLS, security headers, CORS, cookies, cloud storage
-- **Custom Rules** — 15+ built-in rules, YAML/JSON rule loading, directory scanning
+- **API Discovery** - Swagger/OpenAPI parsing, GraphQL introspection, brute-force, JS extraction
+- **Supply Chain** - npm/pip/go/cargo dependency scanning, typosquat detection
+- **Infrastructure** - DNS, SSL/TLS, security headers, CORS, cookies, cloud storage
+- **Custom Rules** - 15+ built-in rules, YAML/JSON rule loading, directory scanning
 
 ### Usage (Advanced Commands)
 
 ```bash
 # Install with advanced dependencies
-pip install strix-agent[advanced]
+pip install shadowstrike[advanced]
 
 # Full security scan
 strix-advanced scan https://target.com
@@ -336,15 +321,15 @@ strix-advanced info
 
 ## Documentation
 
-Full documentation is available at **[docs.strix.ai](https://docs.strix.ai)** — including detailed guides for usage, CI/CD integrations, skills, and advanced configuration.
+Full documentation is available at **[docs.shadowstrike.dev](https://docs.shadowstrike.dev)** - including detailed guides for usage, CI/CD integrations, skills, and advanced configuration.
 
 ## Contributing
 
-We welcome contributions of code, docs, and new skills - check out our [Contributing Guide](https://docs.strix.ai/contributing) to get started or open a [pull request](https://github.com/usestrix/strix/pulls)/[issue](https://github.com/usestrix/strix/issues).
+We welcome contributions of code, docs, and new skills - check out our [Contributing Guide](https://docs.shadowstrike.dev/contributing) to get started or open a [pull request](https://github.com/Hafiz380/shadowstrike/pulls)/[issue](https://github.com/Hafiz380/shadowstrike/issues).
 
 ## Join Our Community
 
-Have questions? Found a bug? Want to contribute? **[Join our Discord!](https://discord.gg/strix-ai)**
+Have questions? Found a bug? Want to contribute? **[Join our Discord!](https://discord.gg/shadowstrike.dev)**
 
 ## Support the Project
 
